@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<iso_project
+	image_name="${CD_IMAGE_NAME}.bin"
+	cue_sheet="${CD_IMAGE_NAME}.cue"
+>
+	<track type="data">
+		<identifiers
+			system			="PLAYSTATION"
+			volume			="OBAMAN"
+			volume_set		="OBAMAN"
+			publisher		="FLUNITRAZEPAM"
+			data_preparer	="PSN00BSDK ${PSN00BSDK_VERSION}"
+			application		="PLAYSTATION"
+			copyright		="README.TXT;1"
+		/>
+
+		<directory_tree>
+			<file name="SYSTEM.CNF"		type="data" source="${PROJECT_SOURCE_DIR}/cd/SYSTEM.CNF" />
+			<file name="OBAMAN.EXE"		type="data" source="obaman.exe" />
+			<file name="OBAMAN.MAP"		type="data" source="obaman.map" />
+			<file name="TEST.OSF"		type="data" source="${PROJECT_SOURCE_DIR}/cd/TEST.OSF" />
+			<file name="OBAMAN.IDX"		type="data" source="${PROJECT_SOURCE_DIR}/cd/OBAMAN.IDX" />
+			<file name="BRDTEST.IDX"		type="data" source="${PROJECT_SOURCE_DIR}/cd/BRDTEST.IDX" />
+
+			<dummy sectors="1024"/>
+		</directory_tree>
+	</track>
+
+	<!--<track type="audio" source="track2.wav" />-->
+</iso_project>
