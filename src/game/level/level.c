@@ -41,6 +41,9 @@ static inline char *i_G_InitCamera(G_State *state, char *data)
 
 static inline char *i_G_AddEntity(const char *path, G_State *state, char *data)
 {
+	if(state->active_entities >= MAX_ENTITIES)
+		return 0;
+
 	char modpath[255];
 	int length;
 	const char *lastdir = strrchr(path, '/');
@@ -50,10 +53,10 @@ static inline char *i_G_AddEntity(const char *path, G_State *state, char *data)
 	else
 		length = (int)(lastdir-path);
 
-	//G_Entity *ent = state->entities + state->active_entities;
-	///FIX: This is broken. The entity array inside the gamestate has been changed to an entity pointer array!
-	G_Entity *ent = 0;
-	assert(0);
+	G_Entity *ent = state->entities[state->active_entities++] = malloc(sizeof(G_Entity));
+
+	if(!ent)
+		return 0;
 
 	memcpy(&ent->position, data, sizeof(VECTOR)); 
 	data += sizeof(VECTOR);
@@ -69,7 +72,6 @@ static inline char *i_G_AddEntity(const char *path, G_State *state, char *data)
 	else
 		snprintf(modpath, 255, "\\%s", name);
 	ent->model = R_LoadModel(modpath);
-	state->active_entities++;
 
 	printf("%s:\n", name);
 	printf("\t\tPath: %s\n", modpath);

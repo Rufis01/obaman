@@ -84,12 +84,10 @@ void R_Init()
 	FntLoad(960, 0);
 	FntOpen(0, 16, WIDTH, HEIGHT, 1, 100);
 	
-	// Enable display output, ResetGraph() disables it by default
-	SetDispMask(1);
 
 	sb = 0;
 	nextprim = screenBuf[0].buffer;
-
+	ClearOTagR((u_long*) screenBuf[sb].table, OT_LEN);
 	InitGeom();
 
 	gte_SetGeomOffset( WIDTH/2, HEIGHT/2 );
@@ -101,6 +99,10 @@ void R_Init()
 	/* Set light ambient color and light color matrix */
 	gte_SetBackColor( 31, 31, 31 );
 	gte_SetColorMatrix( &color_mtx );
+	
+	// Enable display output, ResetGraph() disables it by default
+	SetDispMask(1);
+
 }
 
 void i_R_GetWorldMatirx(G_Camera *cam, MATRIX *wmtx)
