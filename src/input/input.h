@@ -6,6 +6,8 @@
 
 #define MAX_MOVEMENT 127
 
+#define I_NO_DEVICE -1
+
 typedef enum
 {
 	I_PORT_DEFAULT

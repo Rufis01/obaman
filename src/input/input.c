@@ -1,7 +1,8 @@
 #include "input.h"
 #include <psxpad.h>
+#include <psxapi.h>
 
-char pad_buff[2][34];	//Why 34 bytes?
+char pad_buff[2][0x22];	//BIOS needs 0x22 bytes, we might need less
 
 void i_I_ReadDigitalPad(I_InputState* state, PADTYPE* pad);
 void i_I_ReadAnalogPad(I_InputState* state, PADTYPE* pad);
@@ -21,7 +22,7 @@ void I_Init()
 
 int I_Poll(I_InputState* state, I_Port port)
 {
-	PADTYPE *pad = pad_buff[port];
+	PADTYPE *pad = (PADTYPE *) pad_buff[port];
 	switch(pad->type)
 	{
 		case PAD_ID_DIGITAL:
@@ -31,7 +32,7 @@ int I_Poll(I_InputState* state, I_Port port)
 			i_I_ReadAnalogPad(state, pad);
 			break;
 		default:
-			return -1;
+			return I_NO_DEVICE;
 	}
 	return 0;
 }
@@ -51,5 +52,5 @@ void i_I_ReadDigitalPad(I_InputState* state, PADTYPE* pad)
 
 void i_I_ReadAnalogPad(I_InputState* state, PADTYPE* pad)
 {
-
+	i_I_ReadDigitalPad(state, pad);
 }

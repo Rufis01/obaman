@@ -26,7 +26,7 @@ struct BUFFER
 	uint8_t buffer[32768 * 2];
 } screenBuf[2];
 
-char sb;
+unsigned char sb;
 uint8_t *nextprim;
 
 /* Light color matrix */
@@ -34,21 +34,21 @@ uint8_t *nextprim;
 /* used as material color when using gte_ncs() or multiplied by a */
 /* source color when using gte_nccs(). 4096 is 1.0 in this matrix */
 /* A column of zeroes disables the light source. */
-MATRIX color_mtx = {
-	ONE/2, 0, 0,	/* Red   */
-	ONE/2, 0, 0,	/* Green */
-	ONE/2, 0, 0	/* Blue  */
-};
+MATRIX color_mtx = {{
+	{ONE/2, 0, 0},	/* Red   */
+	{ONE/2, 0, 0},	/* Green */
+	{ONE/2, 0, 0}	/* Blue  */
+}};
 
 /* Light matrix */
 /* Each row represents a vector direction of each light source. */
 /* An entire row of zeroes disables the light source. */
-MATRIX light_mtx = {
+MATRIX light_mtx = {{
 	/* X,  Y,  Z */
-	-ONE , -ONE , -ONE,
-	0	  , 0	  , 0,
-	0	  , 0	  , 0
-};
+	{-ONE , -ONE , -ONE},
+	{0	  , 0	  , 0},
+	{0	  , 0	  , 0}
+}};
 
 void R_SetFov(int tan)
 {
@@ -166,7 +166,7 @@ void R_DrawEntity(G_Camera *cam, G_Entity *ent)
 
 	for(int i = 0; i < model->indices; i+=3)
 	{
-		if((char *)pol3 > (char *)&screenBuf[sb].buffer[32768*2])
+		if((unsigned char *)pol3 > (unsigned char *)&screenBuf[sb].buffer[32768*2])
 		{
 			printf("GPU primitive buffer is full!\n");
 			return;
@@ -237,7 +237,7 @@ void R_DrawEntity(G_Camera *cam, G_Entity *ent)
 
 		pol3++;
 	}
-	nextprim = (char*) pol3;
+	nextprim = (unsigned char*) pol3;
 }
 
 void R_Finish()

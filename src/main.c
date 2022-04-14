@@ -6,5 +6,6 @@ int main( void )
 	FS_Init();
 
 	G_Start();
+	
 	return 0;
 }

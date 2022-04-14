@@ -10,9 +10,18 @@ void G_Start()
 	while(1)
 	{
 		R_DbgPrint("OBA-MAN DEMO\n");
+
 		for(int i=0; i<state->active_entities; i++)
 		{
-			R_DrawEntity(&state->camera, &state->entities[i]);
+			G_Entity* ent = state->entities[i];
+			if(ent->update != 0)
+				ent->update(state, ent);
+		}
+
+		for(int i=0; i<state->active_entities; i++)
+		{
+			G_Entity* ent = state->entities[i];
+			R_DrawEntity(&state->camera, ent);
 		}
 
 		R_DbgPrint("X=%d Y=%d Z=%d\n", 

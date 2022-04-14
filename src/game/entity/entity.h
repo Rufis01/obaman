@@ -4,6 +4,8 @@
 #include "psxgte.h"
 #include "../../renderer/model.h"
 
+struct _State;
+
 typedef enum
 {
 	NONE,
@@ -11,14 +13,14 @@ typedef enum
 	MAX_TYPES
 } G_EntityType;
 
-typedef struct
+typedef struct _Entity
 {
 	VECTOR position;
 	SVECTOR rotation;
 	SVECTOR velocity;
 	R_Model *model;
 	G_EntityType type;
-	void (*update)(G_State *state, G_Entity * self);
+	void (*update)(struct _State *state, struct _Entity* self);
 } G_Entity;
 
 #endif

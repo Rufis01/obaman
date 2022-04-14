@@ -3,7 +3,6 @@
 
 void d_E_FreeCam(G_State *state, G_Entity *self)
 {
-
 	SVECTOR	trot;			// Rotation value for matrix calculations
 	trot.vx = state->camera.rotation.vx;
 	trot.vy = state->camera.rotation.vy;
@@ -89,12 +88,14 @@ void d_E_FreeCam(G_State *state, G_Entity *self)
 	if( (input.buttons&I_PAD_L1) ) {
 		
 		state->camera.FOV+=16;
+		#pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
 		R_SetFov(state->camera.FOV);
 	}
 	
 	if( (input.buttons&I_PAD_L2) ) {
 		
 		state->camera.FOV-=16;
+		#pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
 		R_SetFov(state->camera.FOV);
 		
 	}

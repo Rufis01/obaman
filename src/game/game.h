@@ -2,16 +2,20 @@
 #define GAME_H
 
 #include "camera/camera.h"
-#include "entity/entity.h"
 
 #define MAX_ENTITIES 5
+#define MAX_PLAYERS 1
 
-typedef struct
+struct _Entity;
+struct _Player;
+
+typedef struct _State
 {
 	G_Camera camera;
-	G_Entity entities[MAX_ENTITIES];
-	G_Entity *player;
+	struct _Entity *entities[MAX_ENTITIES];
+	struct _Player *players[MAX_PLAYERS];
 	unsigned int active_entities;
+	unsigned int active_players;
 } G_State;
 
 void G_Start();

@@ -1,6 +1,7 @@
 #include "level.h"
 #include "../camera/camera.h"
 #include "../entity/entity.h"
+#include "../entity/player.h"
 #include "../../renderer/model.h"
 #include "../../renderer/renderer.h"
 #include "../../filesystem/filesystem.h"
@@ -9,12 +10,17 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <assert.h>
+
 static inline char *i_G_InitCamera(G_State* state, char *data)
 {
 	G_Camera *cam = &state->camera;
 	memcpy(cam, data, sizeof(G_Camera));
-	cam->FOV=640;		//Code is buggy, we hardcode a value for now.
+
+	///TODO: Code is buggy, we hardcode a value for now.
+	cam->FOV=640;
 	R_SetFov(cam->FOV);
+	
 	/*cam->rotation.vx = 0;
 	cam->rotation.vy = 0;
 	cam->rotation.vz = 0;*/
@@ -44,7 +50,10 @@ static inline char *i_G_AddEntity(const char* path, G_State* state, char *data)
 	else
 		length = (int)(lastdir-path);
 
-	G_Entity *ent = state->entities + state->active_entities;
+	//G_Entity *ent = state->entities + state->active_entities;
+	///FIX: This is broken. The entity array inside the gamestate has been changed to an entity pointer array!
+	G_Entity *ent = 0;
+	assert(0);
 
 	memcpy(&ent->position, data, sizeof(VECTOR)); 
 	data += sizeof(VECTOR);
@@ -104,6 +113,10 @@ G_State* G_LoadLevel(const char *path)
 			{
 				level = i_G_AddEntity(path, state, level);
 			} break;
+			case 'p':
+			{
+				//level = i_G_AddPlayer(path, state, level);
+			} break;
 			default:
 			{
 				printf("Yo, wtf? I don't know what this is! %#x\n", obj);
@@ -112,8 +125,6 @@ G_State* G_LoadLevel(const char *path)
 	}
 
 	free(data);
-
-	state->player = &state->entities[0];
-
+	
 	return state;
 }
