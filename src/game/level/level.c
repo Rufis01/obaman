@@ -12,7 +12,7 @@
 
 #include <assert.h>
 
-static inline char *i_G_InitCamera(G_State* state, char *data)
+static inline char *i_G_InitCamera(G_State *state, char *data)
 {
 	G_Camera *cam = &state->camera;
 	memcpy(cam, data, sizeof(G_Camera));
@@ -39,7 +39,7 @@ static inline char *i_G_InitCamera(G_State* state, char *data)
 	return data + sizeof(G_Camera);
 }
 
-static inline char *i_G_AddEntity(const char* path, G_State* state, char *data)
+static inline char *i_G_AddEntity(const char *path, G_State *state, char *data)
 {
 	char modpath[255];
 	int length;
@@ -85,12 +85,12 @@ static inline char *i_G_AddEntity(const char* path, G_State* state, char *data)
 	return data + strlen(name) + 1;
 }
 
-G_State* G_LoadLevel(const char *path)
+G_State *G_LoadLevel(const char *path)
 {
 	int size;
 	char *data = FS_LoadFileSync(path, &size);
 	char *level = data;
-	G_State* state;
+	G_State *state;
 
 	if(!data)
 		return 0;

@@ -15,7 +15,7 @@
 #define HEIGHT 512
 
 #ifdef __INTELLISENSE__
-    #pragma diag_suppress 1118
+	#pragma diag_suppress 1118
 #endif
 
 struct BUFFER
@@ -67,9 +67,9 @@ void R_Init()
 	screenBuf[0].disp.isinter = 1;
 	screenBuf[1].disp.isinter = 1;
 
-    // Configures the pair of DRAWENVs for the DISPENVs
-    SetDefDrawEnv(&screenBuf[0].draw, 0, 0, WIDTH, HEIGHT);
-    SetDefDrawEnv(&screenBuf[1].draw, 0, 0, WIDTH, HEIGHT);
+	// Configures the pair of DRAWENVs for the DISPENVs
+	SetDefDrawEnv(&screenBuf[0].draw, 0, 0, WIDTH, HEIGHT);
+	SetDefDrawEnv(&screenBuf[1].draw, 0, 0, WIDTH, HEIGHT);
 
 	// Set and enable clear color
 	setRGB0(&screenBuf[0].draw, 0, 15, 63);
@@ -103,7 +103,7 @@ void R_Init()
 	gte_SetColorMatrix( &color_mtx );
 }
 
-void i_R_GetWorldMatirx(G_Camera *cam, MATRIX* wmtx)
+void i_R_GetWorldMatirx(G_Camera *cam, MATRIX *wmtx)
 {
 	VECTOR	ipos;	// Integer part of cam position
 	SVECTOR	irot;	// Integer part of cam rotation

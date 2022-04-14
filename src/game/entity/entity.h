@@ -20,7 +20,7 @@ typedef struct _Entity
 	SVECTOR velocity;
 	R_Model *model;
 	G_EntityType type;
-	void (*update)(struct _State *state, struct _Entity* self);
+	void (*update)(struct _State *state, struct _Entity *self);
 } G_Entity;
 
 #endif

@@ -13,14 +13,14 @@ void G_Start()
 
 		for(int i=0; i<state->active_entities; i++)
 		{
-			G_Entity* ent = state->entities[i];
+			G_Entity *ent = state->entities[i];
 			if(ent->update != 0)
 				ent->update(state, ent);
 		}
 
 		for(int i=0; i<state->active_entities; i++)
 		{
-			G_Entity* ent = state->entities[i];
+			G_Entity *ent = state->entities[i];
 			R_DrawEntity(&state->camera, ent);
 		}
 

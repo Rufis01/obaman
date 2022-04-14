@@ -4,7 +4,7 @@
 
 typedef struct i_R_Model R_Model;
 
-R_Model* R_LoadModel(const char* path);
+R_Model *R_LoadModel(const char *path);
 bool R_UnloadModel(R_Model *mod);
 
 #endif

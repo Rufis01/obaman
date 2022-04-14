@@ -42,6 +42,6 @@ typedef enum
 } I_Button;
 
 void I_Init();
-int I_Poll(I_InputState* state, I_Port port);
+int I_Poll(I_InputState *state, I_Port port);
 
 #endif

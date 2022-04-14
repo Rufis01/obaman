@@ -4,8 +4,8 @@
 
 char pad_buff[2][0x22];	//BIOS needs 0x22 bytes, we might need less
 
-void i_I_ReadDigitalPad(I_InputState* state, PADTYPE* pad);
-void i_I_ReadAnalogPad(I_InputState* state, PADTYPE* pad);
+void i_I_ReadDigitalPad(I_InputState *state, PADTYPE *pad);
+void i_I_ReadAnalogPad(I_InputState *state, PADTYPE *pad);
 
 void I_Init()
 {
@@ -20,7 +20,7 @@ void I_Init()
 	ChangeClearPAD(0);
 }
 
-int I_Poll(I_InputState* state, I_Port port)
+int I_Poll(I_InputState *state, I_Port port)
 {
 	PADTYPE *pad = (PADTYPE *) pad_buff[port];
 	switch(pad->type)
@@ -37,7 +37,7 @@ int I_Poll(I_InputState* state, I_Port port)
 	return 0;
 }
 
-void i_I_ReadDigitalPad(I_InputState* state, PADTYPE* pad)
+void i_I_ReadDigitalPad(I_InputState *state, PADTYPE *pad)
 {
 	state->buttons = ~pad->btn;
 
@@ -50,7 +50,7 @@ void i_I_ReadDigitalPad(I_InputState* state, PADTYPE* pad)
 	else if (state->buttons & PAD_LEFT) state->x = -MAX_MOVEMENT;
 }
 
-void i_I_ReadAnalogPad(I_InputState* state, PADTYPE* pad)
+void i_I_ReadAnalogPad(I_InputState *state, PADTYPE *pad)
 {
 	i_I_ReadDigitalPad(state, pad);
 }
