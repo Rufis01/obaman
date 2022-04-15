@@ -5,20 +5,20 @@
 
 void G_Start()
 {
-	G_State *state = G_LoadLevel("\\TEST.OSF");
+	G_State *state = G_LoadLevel("TEST.OSF");
 
 	while(1)
 	{
 		R_DbgPrint("OBA-MAN DEMO\n");
 
-		for(int i=0; i<state->active_entities; i++)
+		for(unsigned int i=0; i<state->active_entities; i++)
 		{
 			G_Entity *ent = state->entities[i];
 			if(ent->update != 0)
 				ent->update(state, ent);
 		}
 
-		for(int i=0; i<state->active_entities; i++)
+		for(unsigned int i=0; i<state->active_entities; i++)
 		{
 			G_Entity *ent = state->entities[i];
 			R_DrawEntity(&state->camera, ent);

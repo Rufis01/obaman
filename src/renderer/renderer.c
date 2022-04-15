@@ -38,7 +38,7 @@ MATRIX color_mtx = {{
 	{ONE/2, 0, 0},	/* Red   */
 	{ONE/2, 0, 0},	/* Green */
 	{ONE/2, 0, 0}	/* Blue  */
-}};
+},{0}};
 
 /* Light matrix */
 /* Each row represents a vector direction of each light source. */
@@ -48,14 +48,14 @@ MATRIX light_mtx = {{
 	{-ONE , -ONE , -ONE},
 	{0	  , 0	  , 0},
 	{0	  , 0	  , 0}
-}};
+},{0}};
 
 void R_SetFov(int tan)
 {
 	gte_SetGeomScreen(tan);
 }
 
-void R_Init()
+void R_Init(void)
 {
 	// This not only resets the GPU but it also installs the library's
 	// ISR subsystem to the kernel
@@ -242,7 +242,7 @@ void R_DrawEntity(G_Camera *cam, G_Entity *ent)
 	nextprim = (unsigned char*) pol3;
 }
 
-void R_Finish()
+void R_Finish(void)
 {
 	FntFlush(-1);
 

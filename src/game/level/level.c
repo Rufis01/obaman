@@ -38,26 +38,8 @@ static inline char *i_G_InitCamera(G_State *state, char *data)
 
 	return data + sizeof(G_Camera);
 }
-
-static inline char *i_G_AddEntity(const char *path, G_State *state, char *data)
-{
-	if(state->active_entities >= MAX_ENTITIES)
-		return 0;
-
-	char modpath[255];
-	int length;
-	const char *lastdir = strrchr(path, '/');
-	if(!lastdir) lastdir = strrchr(path, '\\');
-	if(!lastdir)
-		length = strlen(path);
-	else
-		length = (int)(lastdir-path);
-
-	G_Entity *ent = state->entities[state->active_entities++] = malloc(sizeof(G_Entity));
-
-	if(!ent)
-		return 0;
-
+static inline char *i_G_LoadEntityData(const char *levelpath, G_Entity *ent, char *data)
+{	
 	memcpy(&ent->position, data, sizeof(VECTOR)); 
 	data += sizeof(VECTOR);
 
@@ -67,14 +49,13 @@ static inline char *i_G_AddEntity(const char *path, G_State *state, char *data)
 	memset(&ent->velocity, 0, sizeof(SVECTOR));
 
 	const char *name = data;
-	if(length)
-		snprintf(modpath, 255, "%.*s\\%s", length, name, path);	//Path and name are in reverse order for some reason...
-	else
-		snprintf(modpath, 255, "\\%s", name);
-	ent->model = R_LoadModel(modpath);
+	char *directory = FS_GetDirectoryPath(levelpath);
+	char *fullpath = FS_GetFullPath(directory, name);
+
+	ent->model = R_LoadModel(fullpath);
 
 	printf("%s:\n", name);
-	printf("\t\tPath: %s\n", modpath);
+	printf("\t\tPath: %s\n", fullpath);
 	printf("\t\tPosition:\n");
 	printf("\t\t\tX: %d\n", ent->position.vx);
 	printf("\t\t\tY: %d\n", ent->position.vy);
@@ -83,14 +64,51 @@ static inline char *i_G_AddEntity(const char *path, G_State *state, char *data)
 	printf("\t\t\tX: %hd\n", ent->rotation.vx);
 	printf("\t\t\tY: %hd\n", ent->rotation.vy);
 	printf("\t\t\tZ: %hd\n", ent->rotation.vz);
-	
+
+	free(directory);
+	free(fullpath);
+
 	return data + strlen(name) + 1;
 }
 
-G_State *G_LoadLevel(const char *path)
+static inline char *i_G_AddEntity(const char *levelpath, G_State *state, char *data)
+{
+	if(state->active_entities >= MAX_ENTITIES)
+		return 0;
+
+	G_Entity *ent = state->entities[state->active_entities++] = malloc(sizeof(G_Entity));
+
+	if(!ent)
+		return 0;
+	
+	return i_G_LoadEntityData(levelpath, ent, data);
+}
+
+static inline char *i_G_AddPlayer(const char *path, G_State *state, char *data)
+{
+	
+	if(state->active_players >= MAX_PLAYERS ||
+	   state->active_entities >= MAX_ENTITIES)
+		return 0;
+
+	G_Player *player = malloc(sizeof(G_Player));
+	state->entities[state->active_entities++] = (G_Entity *) player;
+
+	if(!player)
+		return 0;
+
+	data = i_G_LoadEntityData(path, (G_Entity *)player, data);
+
+	player->_ent.update = d_E_FreeCam;
+
+	return data;
+}
+
+G_State *G_LoadLevel(const char *levelname)
 {
 	int size;
-	char *data = FS_LoadFileSync(path, &size);
+	char *cpath = FS_GetCorrectPath(levelname);
+	char *data = FS_LoadFileSync(cpath, &size);
 	char *level = data;
 	G_State *state;
 
@@ -113,11 +131,11 @@ G_State *G_LoadLevel(const char *path)
 			} break;
 			case 'o':
 			{
-				level = i_G_AddEntity(path, state, level);
+				level = i_G_AddEntity(cpath, state, level);
 			} break;
 			case 'p':
 			{
-				//level = i_G_AddPlayer(path, state, level);
+				level = i_G_AddPlayer(cpath, state, level);
 			} break;
 			default:
 			{
@@ -127,6 +145,7 @@ G_State *G_LoadLevel(const char *path)
 	}
 
 	free(data);
+	free(cpath);
 	
 	return state;
 }

@@ -18,7 +18,7 @@ typedef struct
 	int x;
 	int y;
 
-	int buttons;
+	unsigned int buttons;
 } I_InputState;
 
 typedef enum
@@ -41,7 +41,7 @@ typedef enum
 	I_PAD_SQUARE		= 1 << 15,
 } I_Button;
 
-void I_Init();
+void I_Init(void);
 int I_Poll(I_InputState *state, I_Port port);
 
 #endif

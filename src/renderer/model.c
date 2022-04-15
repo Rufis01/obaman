@@ -13,6 +13,7 @@ R_Model *R_LoadModel(const char *path)
 	if(!out)
 		return 0;
 
+	///TODO: maybe check actual vs expected size?
 	char *modData = FS_LoadFileSync(path, 0);
 	char *ptr = modData;
 

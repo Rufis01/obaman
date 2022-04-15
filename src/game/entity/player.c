@@ -3,12 +3,13 @@
 
 void d_E_FreeCam(G_State *state, G_Entity *self)
 {
+	(void)self;
 	SVECTOR	trot;			// Rotation value for matrix calculations
 	trot.vx = state->camera.rotation.vx;
 	trot.vy = state->camera.rotation.vy;
 	trot.vz = state->camera.rotation.vz;
 
-	I_InputState input;
+	I_InputState input = {0};
 	I_Poll(&input, I_PORT_DEFAULT);
 
 			// Look controls

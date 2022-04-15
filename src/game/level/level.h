@@ -3,6 +3,6 @@
 
 #include "../game.h"
 
-G_State *G_LoadLevel(const char *path);
+G_State *G_LoadLevel(const char *levelname);
 
 #endif

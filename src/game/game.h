@@ -18,6 +18,6 @@ typedef struct _State
 	unsigned int active_players;
 } G_State;
 
-void G_Start();
+void G_Start(void);
 
 #endif

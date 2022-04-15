@@ -20,7 +20,7 @@
 			<file name="OBAMAN.MAP"		type="data" source="obaman.map" />
 			<file name="TEST.OSF"		type="data" source="${PROJECT_SOURCE_DIR}/cd/TEST.OSF" />
 			<file name="OBAMAN.IDX"		type="data" source="${PROJECT_SOURCE_DIR}/cd/OBAMAN.IDX" />
-			<file name="BRDTEST.IDX"		type="data" source="${PROJECT_SOURCE_DIR}/cd/BRDTEST.IDX" />
+			<file name="BRDTEST.IDX"	type="data" source="${PROJECT_SOURCE_DIR}/cd/BRDTEST.IDX" />
 
 			<dummy sectors="1024"/>
 		</directory_tree>

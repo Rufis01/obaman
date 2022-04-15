@@ -4,9 +4,9 @@
 #include "../game/entity/entity.h"
 #include "../game/camera/camera.h"
 
-void R_Init();
+void R_Init(void);
 void R_DrawEntity(G_Camera *cam, G_Entity *ent);
-void R_Finish();
+void R_Finish(void);
 
 void R_SetFov(int tan);
 
