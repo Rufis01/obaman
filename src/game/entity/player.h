@@ -4,12 +4,11 @@
 #include "../game.h"
 #include "entity.h"
 
-typedef struct _Player
+typedef struct _Player		//Is this really useful (in this case)???
 {
 	G_Entity _ent;		// The player can be safely treated as an entity since a pointer to a struct always points to its first member.
-	//Other fields (function pointers?)
 } G_Player;
 
-void d_E_FreeCam(struct _State *state, struct _Entity *self);
+bool d_E_FreeCam(struct _State *state, struct _Entity *self);
 
 #endif

@@ -14,14 +14,13 @@ void G_Start()
 		for(unsigned int i=0; i<state->active_entities; i++)
 		{
 			G_Entity *ent = state->entities[i];
-			if(ent->update != 0)
-				ent->update(state, ent);
+			E_Update(state, ent);
 		}
 
 		for(unsigned int i=0; i<state->active_entities; i++)
 		{
 			G_Entity *ent = state->entities[i];
-			R_DrawEntity(&state->camera, ent);
+			E_Draw(state, ent);
 		}
 
 		R_DbgPrint("X=%d Y=%d Z=%d\n", 

@@ -2,9 +2,11 @@
 #define ENTITY_H
 
 #include "psxgte.h"
+#include "../game.h"
 #include "../../renderer/model.h"
 
-struct _State;
+
+struct _E_UpdateNode;
 
 typedef enum
 {
@@ -18,9 +20,16 @@ typedef struct _Entity
 	VECTOR position;
 	SVECTOR rotation;
 	SVECTOR velocity;
-	R_Model *model;
 	G_EntityType type;
-	void (*update)(struct _State *state, struct _Entity *self);
+	R_Model *model;
+	struct _E_UpdateNode *update;
 } G_Entity;
+
+typedef bool(*E_Behaviour)(G_State *state, G_Entity *self);
+
+void E_Update(G_State *state, G_Entity *self);
+void E_Draw(G_State *state, G_Entity *self);
+
+void E_AddBehaviour(G_Entity *ent, E_Behaviour behaviour);
 
 #endif

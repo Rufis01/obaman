@@ -1,7 +1,15 @@
 #include "player.h"
 #include "../../input/input.h"
 
-void d_E_FreeCam(G_State *state, G_Entity *self)
+bool E_PacmanMovement(G_State *state, G_Entity *self)
+{
+	(void)state;
+	if(self->type != PLAYER)
+		return false;
+	return true;
+}
+
+bool d_E_FreeCam(G_State *state, G_Entity *self)
 {
 	(void)self;
 	SVECTOR	trot;			// Rotation value for matrix calculations
@@ -100,4 +108,6 @@ void d_E_FreeCam(G_State *state, G_Entity *self)
 		R_SetFov(state->camera.FOV);
 		
 	}
+
+	return true;
 }

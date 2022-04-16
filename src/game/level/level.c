@@ -99,7 +99,8 @@ static inline char *i_G_AddPlayer(const char *path, G_State *state, char *data)
 
 	data = i_G_LoadEntityData(path, (G_Entity *)player, data);
 
-	player->_ent.update = d_E_FreeCam;
+	E_AddBehaviour((G_Entity *) player, d_E_FreeCam);
+	player->_ent.type = PLAYER;
 
 	return data;
 }
