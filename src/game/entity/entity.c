@@ -4,13 +4,15 @@
 
 #include <stdlib.h>
 
+//Cache unfriendly(?)
+
 typedef struct _E_UpdateNode
 {
 	struct _E_UpdateNode* next;
 	bool (*update)(struct _State *state, struct _Entity *self);
 }i_E_UpdateNode;
 
-void E_AddBehaviour(G_Entity *ent, E_Behaviour behaviour)
+bool E_AddBehaviour(G_Entity *ent, E_Behaviour behaviour)
 {
 	i_E_UpdateNode **node = &ent->update;
 	while(*node)
@@ -22,6 +24,8 @@ void E_AddBehaviour(G_Entity *ent, E_Behaviour behaviour)
 
 	(*node)->next = 0;
 	(*node)->update = behaviour;
+
+	return true;
 }
 
 void E_Update(G_State *state, G_Entity *self)

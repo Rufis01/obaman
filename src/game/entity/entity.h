@@ -30,6 +30,6 @@ typedef bool(*E_Behaviour)(G_State *state, G_Entity *self);
 void E_Update(G_State *state, G_Entity *self);
 void E_Draw(G_State *state, G_Entity *self);
 
-void E_AddBehaviour(G_Entity *ent, E_Behaviour behaviour);
+bool E_AddBehaviour(G_Entity *ent, E_Behaviour behaviour);
 
 #endif
