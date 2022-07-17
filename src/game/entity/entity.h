@@ -6,8 +6,6 @@
 #include "../../renderer/model.h"
 
 
-struct _E_UpdateNode;
-
 typedef enum
 {
 	NONE,
@@ -17,19 +15,16 @@ typedef enum
 
 typedef struct _Entity
 {
+	unsigned short size;
 	VECTOR position;
 	SVECTOR rotation;
 	SVECTOR velocity;
 	G_EntityType type;
 	R_Model *model;
-	struct _E_UpdateNode *update;
+	unsigned short nBehaviour;
 } G_Entity;
-
-typedef bool(*E_Behaviour)(G_State *state, G_Entity *self);
 
 void E_Update(G_State *state, G_Entity *self);
 void E_Draw(G_State *state, G_Entity *self);
-
-bool E_AddBehaviour(G_Entity *ent, E_Behaviour behaviour);
 
 #endif

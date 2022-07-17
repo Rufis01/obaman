@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall -Wextra -Wpedantic -std=c11")
+SET(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -DNO_REALLOC -Wall -Wextra -Wpedantic -std=c11")
 
 project(
 	obaman
@@ -19,6 +19,6 @@ psn00bsdk_add_executable(
 psn00bsdk_add_cd_image(
 	iso				#Target name
 	../iso/OBAMAN	#Image name
-	./cd/iso.xml	#Config
+	./disc/iso.xml	#Config
 	DEPENDS obaman
 )

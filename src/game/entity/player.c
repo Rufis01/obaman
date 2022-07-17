@@ -9,9 +9,10 @@ bool E_PacmanMovement(G_State *state, G_Entity *self)
 	return true;
 }
 
-bool d_E_FreeCam(G_State *state, G_Entity *self)
+bool d_E_FreeCam(G_State *state, G_Entity *self, struct _E_BehaviourHeader* header)
 {
 	(void)self;
+	(void)header;
 	SVECTOR	trot;			// Rotation value for matrix calculations
 	trot.vx = state->camera.rotation.vx;
 	trot.vy = state->camera.rotation.vy;
@@ -22,7 +23,7 @@ bool d_E_FreeCam(G_State *state, G_Entity *self)
 
 			// Look controls
 	if( (input.buttons&I_PAD_UP) ) {
-		
+		printf("Look up!\n");
 		// Look up
 		state->camera.rotation.vx -= 8;
 		
@@ -97,17 +98,33 @@ bool d_E_FreeCam(G_State *state, G_Entity *self)
 	if( (input.buttons&I_PAD_L1) ) {
 		
 		state->camera.FOV+=16;
-		#pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
+#pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
 		R_SetFov(state->camera.FOV);
 	}
 	
 	if( (input.buttons&I_PAD_L2) ) {
 		
 		state->camera.FOV-=16;
-		#pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
+#pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
 		R_SetFov(state->camera.FOV);
 		
 	}
 
+	return true;
+}
+
+bool d_E_ChainTest(G_State *state, G_Entity *self, struct _E_BehaviourHeader* header)
+{
+	(void)self;
+	(void)header;
+
+	I_InputState input = {0};
+	I_Poll(&input, I_PORT_DEFAULT);
+
+	if(input.buttons & I_PAD_START)
+		return false;
+	if(input.buttons & I_PAD_SELECT)
+		printf("Congrats, it's working :D\n");
+		
 	return true;
 }

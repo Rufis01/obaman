@@ -2,6 +2,7 @@
 #include "../camera/camera.h"
 #include "../entity/entity.h"
 #include "../entity/player.h"
+#include "../entity/behaviour.h"
 #include "../../renderer/model.h"
 #include "../../renderer/renderer.h"
 #include "../../filesystem/filesystem.h"
@@ -40,6 +41,7 @@ static inline char *i_G_InitCamera(G_State *state, char *data)
 }
 static inline char *i_G_LoadEntityData(const char *levelpath, G_Entity *ent, char *data)
 {	
+	ent->size = sizeof(G_Entity);
 	memcpy(&ent->position, data, sizeof(VECTOR)); 
 	data += sizeof(VECTOR);
 
@@ -92,15 +94,28 @@ static inline char *i_G_AddPlayer(const char *path, G_State *state, char *data)
 		return 0;
 
 	G_Player *player = malloc(sizeof(G_Player));
-	state->entities[state->active_entities++] = (G_Entity *) player;
+	state->active_players++;
 
 	if(!player)
 		return 0;
 
 	data = i_G_LoadEntityData(path, (G_Entity *)player, data);
 
-	E_AddBehaviour((G_Entity *) player, d_E_FreeCam);
 	player->_ent.type = PLAYER;
+	player->_ent.size = sizeof(G_Player);
+
+	G_E_BehaviourHeader header =
+	{
+		.size = sizeof(G_E_BehaviourHeader),
+		.behaviour = d_E_ChainTest
+	};
+
+	E_AddBehaviour((G_Entity **) &player, &header);
+	header.behaviour = d_E_FreeCam;
+	E_AddBehaviour((G_Entity **) &player, &header);
+
+	state->entities[state->active_entities++] = (G_Entity *) player;
+	printf("Player is at %p\n", player);
 
 	return data;
 }

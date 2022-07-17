@@ -14,6 +14,7 @@ void G_Start()
 		for(unsigned int i=0; i<state->active_entities; i++)
 		{
 			G_Entity *ent = state->entities[i];
+			printf("Updating %p\n", ent);
 			E_Update(state, ent);
 		}
 

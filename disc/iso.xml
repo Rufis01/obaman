@@ -15,12 +15,12 @@
 		/>
 
 		<directory_tree>
-			<file name="SYSTEM.CNF"		type="data" source="${PROJECT_SOURCE_DIR}/cd/SYSTEM.CNF" />
+			<file name="SYSTEM.CNF"		type="data" source="${PROJECT_SOURCE_DIR}/disc/SYSTEM.CNF" />
 			<file name="OBAMAN.EXE"		type="data" source="obaman.exe" />
 			<file name="OBAMAN.MAP"		type="data" source="obaman.map" />
-			<file name="TEST.OSF"		type="data" source="${PROJECT_SOURCE_DIR}/cd/TEST.OSF" />
-			<file name="OBAMAN.IDX"		type="data" source="${PROJECT_SOURCE_DIR}/cd/OBAMAN.IDX" />
-			<file name="BRDTEST.IDX"	type="data" source="${PROJECT_SOURCE_DIR}/cd/BRDTEST.IDX" />
+			<file name="TEST.OSF"		type="data" source="${PROJECT_SOURCE_DIR}/disc/TEST.OSF" />
+			<file name="OBAMAN.IDX"		type="data" source="${PROJECT_SOURCE_DIR}/disc/OBAMAN.IDX" />
+			<file name="BRDTEST.IDX"	type="data" source="${PROJECT_SOURCE_DIR}/disc/BRDTEST.IDX" />
 
 			<dummy sectors="1024"/>
 		</directory_tree>

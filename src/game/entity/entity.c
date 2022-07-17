@@ -1,41 +1,20 @@
 #include "entity.h"
+#include "behaviour.h"
 #include "../game.h"
 #include "../../renderer/renderer.h"
 
 #include <stdlib.h>
 
-//Cache unfriendly(?)
-
-typedef struct _E_UpdateNode
-{
-	struct _E_UpdateNode* next;
-	bool (*update)(struct _State *state, struct _Entity *self);
-}i_E_UpdateNode;
-
-bool E_AddBehaviour(G_Entity *ent, E_Behaviour behaviour)
-{
-	i_E_UpdateNode **node = &ent->update;
-	while(*node)
-		*node = (*node)->next;
-
-	*node = malloc(sizeof(i_E_UpdateNode));
-	if(!*node)
-		return;
-
-	(*node)->next = 0;
-	(*node)->update = behaviour;
-
-	return true;
-}
-
 void E_Update(G_State *state, G_Entity *self)
 {
-	i_E_UpdateNode *node = self->update;
-	while(node)
+	G_E_BehaviourHeader *header = (G_E_BehaviourHeader *) (((char *)(self)) + sizeof(G_Entity));
+
+	for(int i=0; i<self->nBehaviour; i++)
 	{
-		if(!(node->update(state, self)))
+		printf("Behaviour %d at %p size %d FUN: %p\n", i, header, header->size, header->behaviour);
+		if(!(header->behaviour(state, self, header)))
 			break;
-		node = node->next;
+		header = (G_E_BehaviourHeader *) (((char *)(header)) + header->size); 
 	}
 }
 
