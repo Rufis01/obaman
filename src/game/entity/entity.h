@@ -10,6 +10,8 @@ typedef enum
 {
 	NONE,
 	PLAYER,
+	ENEMY,
+	OBJECT,
 	MAX_TYPES
 } G_EntityType;
 

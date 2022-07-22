@@ -1,10 +1,12 @@
 # Obaman
 ## What is it?
-Obaman is an experimental PS1 game and engine.
+Obaman is an *experimental* PS1 game and engine.
 
 The main goal is to develop a basic, yet general and portable game engine. The game is a pacman clone and should provide a general idea of how to use this engine and should serve as a way to test it.
 
 As of now there's **no working game**, only a couple of debug functionalities have been implemented.
+
+DON'T USE THE ENGINE IN ITS CURRENT STATE. STUFF WILL CHANGE AND BREAK, **A LOT!**
 
 ## Why did I choose the PS1?
 There are 3 main reasons:

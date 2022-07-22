@@ -4,8 +4,10 @@
 
 #include "behaviour.h"
 
+//TODO: investigate performance against the old method
+
 #ifdef NO_REALLOC
-static void *realloc(void *ptr, size_t size)
+void *realloc(void *ptr, size_t size)
 {
 	void *ret = malloc(size);
 	if(ret == NULL)

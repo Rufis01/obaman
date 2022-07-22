@@ -1,0 +1,62 @@
+Any character shall be interpreted as an ASCII character
+
+Any set of bytes preceded by a 'i.' is an integer value
+
+Any set of bytes preceded by a 'd.' is a non-integer number stored in fixed-point
+(two-complement) representation with a scaling factor of (4096)^-1,
+therefore a raw value of 4096 represents an unit (1).
+
+Level(.OSF):
+
+Magic Number = 
+
+# in any order
+
+# camera
+c
+
+# position in fixed point
+d.xx xx xx xx
+d.yy yy yy yy
+d.zz zz zz zz
+
+# FOV or project-plane distance
+i.dd dd dd dd
+
+# entity (players, npcs and objects)
+e
+
+# type
+i.tt tt tt tt
+
+# position in fixed point
+d.xx xx xx xx
+d.yy yy yy yy
+d.zz zz zz zz
+
+# rotation in some format
+d.xx xx
+d.yy yy
+d.zz zz
+
+str.filepath/to/object_file.OOF
+
+# ordered list of behaviours (IDs) and init data terminated by two null bytes
+
+d.bx bx
+d.by by
+--behaviour y init data (e.g.: animation file location)--
+d.bz bz
+...
+d.00 00
+# next entry
+
+
+
+Object (.OOF)
+
+Magic Number = 
+
+
+
+

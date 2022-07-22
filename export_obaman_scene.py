@@ -15,7 +15,7 @@ def export_obj(o, filepath):
     o.location = zero
     o.rotation_euler = zero
     o.select_set(True)
-    bpy.ops.export_scene.obj(filepath=filepath, axis_forward='Z', axis_up='-Y', use_smooth_groups=False, use_materials=False, use_triangles=True, use_blen_objects=False, use_selection=True)
+    bpy.ops.export_scene.obj(filepath=filepath, axis_forward='Z', axis_up='-Y', use_smooth_groups=False, use_materials=False, use_triangles=True, use_blen_objects=False, use_selection=True, keep_vertex_order=True)
     o.select_set(False)
     o.location = loc.copy()
     o.rotation_euler = rot.copy()
@@ -44,7 +44,6 @@ def export_scene(context, filepath, exp_obj):
     f.write(numpy.int16(((90-math.degrees(cam.rotation_euler[0]))*4096.0)/360.0).tobytes())
     f.write(numpy.int16((math.degrees(cam.rotation_euler[1])*4096.0)/360.0).tobytes())
     f.write(numpy.int16((math.degrees(-cam.rotation_euler[2])*4096.0)/360.0).tobytes())
-    
     f.write(b'\0\0') #Add padding for SVECTOR
         
     f.write(numpy.int32(2848194).tobytes())    #FOV. Code is buggy (it is ignored anyways when loaded)
