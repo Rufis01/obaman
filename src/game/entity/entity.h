@@ -8,11 +8,11 @@
 
 typedef enum
 {
-	NONE,
-	PLAYER,
-	ENEMY,
-	OBJECT,
-	MAX_TYPES
+	ENTITY_NONE,
+	ENTITY_PLAYER,
+	ENTITY_ENEMY,
+	ENTITY_OBJECT,
+	ENTITY_MAX_TYPES
 } G_EntityType;
 
 typedef struct _Entity

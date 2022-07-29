@@ -101,7 +101,7 @@ static inline char *i_G_AddPlayer(const char *path, G_State *state, char *data)
 
 	data = i_G_LoadEntityData(path, (G_Entity *)player, data);
 
-	player->_ent.type = PLAYER;
+	player->_ent.type = ENTITY_PLAYER;
 	player->_ent.size = sizeof(G_Player);
 
 	G_E_BehaviourHeader header =

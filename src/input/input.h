@@ -10,7 +10,7 @@
 
 typedef enum
 {
-	I_PORT_DEFAULT
+	INPUT_PORT_DEFAULT
 } I_Port;
 
 typedef struct
@@ -23,22 +23,22 @@ typedef struct
 
 typedef enum
 {
-	I_PAD_SELECT		= 1 << 0,
-	I_PAD_L3			= 1 << 1,
-	I_PAD_R3			= 1 << 2,
-	I_PAD_START		= 1 << 3,
-	I_PAD_UP			= 1 << 4,
-	I_PAD_RIGHT		= 1 << 5,
-	I_PAD_DOWN		= 1 << 6,
-	I_PAD_LEFT		= 1 << 7,
-	I_PAD_L2			= 1 << 8,
-	I_PAD_R2			= 1 << 9,
-	I_PAD_L1			= 1 << 10,
-	I_PAD_R1			= 1 << 11,
-	I_PAD_TRIANGLE	= 1 << 12,
-	I_PAD_CIRCLE		= 1 << 13,
-	I_PAD_CROSS		= 1 << 14,
-	I_PAD_SQUARE		= 1 << 15,
+	INPUT_PAD_SELECT		= 1 << 0,
+	INPUT_PAD_L3			= 1 << 1,
+	INPUT_PAD_R3			= 1 << 2,
+	INPUT_PAD_START		= 1 << 3,
+	INPUT_PAD_UP			= 1 << 4,
+	INPUT_PAD_RIGHT		= 1 << 5,
+	INPUT_PAD_DOWN		= 1 << 6,
+	INPUT_PAD_LEFT		= 1 << 7,
+	INPUT_PAD_L2			= 1 << 8,
+	INPUT_PAD_R2			= 1 << 9,
+	INPUT_PAD_L1			= 1 << 10,
+	INPUT_PAD_R1			= 1 << 11,
+	INPUT_PAD_TRIANGLE	= 1 << 12,
+	INPUT_PAD_CIRCLE		= 1 << 13,
+	INPUT_PAD_CROSS		= 1 << 14,
+	INPUT_PAD_SQUARE		= 1 << 15,
 } I_Button;
 
 void I_Init(void);

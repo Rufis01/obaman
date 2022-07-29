@@ -60,3 +60,38 @@ Magic Number =
 
 
 
+Animation (.OAF)
+
+Magic Number =
+
+# n keyframes
+
+# duration
+d?dd dd dd dd
+
+# interpolation curve
+i.ii ii
+
+# number of vertices changed
+i.nn nn
+
+# n times
+# vertex number
+i.nn nn
+
+# position in fixed point
+d.xx xx xx xx
+d.yy yy yy yy
+d.zz zz zz zz
+
+# uv coords
+i.uu uu
+i.vv vv
+
+# normals in fixed point
+d.xx xx xx xx
+d.yy yy yy yy
+d.zz zz zz zz
+
+
+

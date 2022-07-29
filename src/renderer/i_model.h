@@ -2,6 +2,8 @@
 #define I_MODEL_H
 #include <psxgte.h>
 
+///NOTE: typedef vs struct mismatch is awful, fix pls.
+
 typedef struct
 {
 	SVECTOR position;
