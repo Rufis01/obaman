@@ -103,6 +103,8 @@ void R_Init(void)
 	// Enable display output, ResetGraph() disables it by default
 	SetDispMask(1);
 
+	printf("Renderer initialized!\n");
+
 }
 
 void i_R_GetWorldMatirx(G_Camera *cam, MATRIX *wmtx)
@@ -206,7 +208,7 @@ void R_DrawEntity(G_Camera *cam, G_Entity *ent)
 		p >>= 4;
 
 		if( (p <= 0) || (p > OT_LEN) )
-			{ printf("Toofarfromcam\n"); continue; }
+			continue;
 
 		// Now the polygon is ready to be sent to the GPU
 		// so we assemble a packet

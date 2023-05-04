@@ -20,7 +20,7 @@ typedef struct _Entity
 	unsigned short size;
 	VECTOR position;
 	SVECTOR rotation;
-	SVECTOR velocity;
+	VECTOR velocity;
 	G_EntityType type;
 	R_Model *model;
 	unsigned short nBehaviour;

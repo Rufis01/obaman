@@ -18,6 +18,9 @@ void I_Init()
 	
 	// Don't make pad driver acknowledge V-Blank IRQ (recommended)
 	ChangeClearPAD(0);
+
+
+	printf("Input initialized!\n");
 }
 
 int I_Poll(I_InputState *state, I_Port port)

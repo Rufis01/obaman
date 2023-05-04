@@ -10,6 +10,8 @@
 void FS_Init(void)
 {
 	CdInit();
+
+	printf("FileSystem initialized!\n");
 }
 
 char *FS_LoadFileSync(const char *path, int *size)
