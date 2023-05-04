@@ -60,6 +60,8 @@ Magic Number =
 
 
 
+# TODO: This is pretty bad, refactor this with smaller and better packets maybe
+
 Animation (.OAF)
 
 Magic Number =
@@ -69,8 +71,8 @@ Magic Number =
 # duration
 d?dd dd dd dd
 
-# interpolation curve
-i.ii ii
+# easing function
+i.ee ee
 
 # number of vertices changed
 i.nn nn
